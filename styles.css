@@ -1,0 +1,351 @@
+/* Global Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-image: url('bg-transformed.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  opacity: 0; /* Start with opacity 0 */
+  animation: fadeIn 2s ease-out forwards; /* Fade-in effect */
+  margin-right: 200px;
+  margin-left: 200px;
+  overflow-x: hidden;
+
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Header Styles */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 20px;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 40px;
+  backdrop-filter: blur(10px);
+}
+
+/* Logo styling */
+header .logo {
+  width: 100px;
+  height: auto;
+  margin-right: 15px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 3em;
+  color: 
+  #9ac0ce;
+}
+
+.container {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  border-radius: 12px;
+  animation: fadeIn 2s ease-out forwards;
+}
+
+
+/* Button Styles */
+.button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #ffffffd4;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: #569286;
+  font-size: 1.5em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  backdrop-filter: blur(10px);
+}
+
+.button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.container:hover > .button:not(:hover) {
+  filter: blur(4px);
+  transform: scale(0.95, 0.95);
+}
+
+/* For the images inside the buttons */
+.button img {
+  max-width: 120px; /* Adjust image size */
+  max-height: 70px; /* Adjust image size */
+  border-radius: 50%; /* Makes the image round */
+  margin-bottom: 0px; /* Space between image and text */
+}
+
+
+/* Full row buttons */
+#ai-assistant
+{
+  grid-column: 1 / 3;
+}
+
+#Goals\ and\ Tasks {
+  grid-column: 1 / 2;
+}
+
+#games {
+  grid-column: 2 / 3;
+}
+
+#crisis-support {
+  grid-column: 2 / 3;
+}
+
+#community {
+  grid-column: 1 / 2;
+}
+
+#my-watch {
+  grid-column: 2 / 3;
+}
+
+#relax-meditate {
+  grid-column: 1 / 2;
+}
+
+/* Curved-edge box for image slider */
+#image-scroll {
+  width: 98%;  /* Adjust to control the width of the container */
+  margin: 0 auto;  /* Centers the container horizontally */
+  overflow: hidden;
+  border-radius: 20px;  /* Rounded corners */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);  /* Subtle shadow for depth */
+  background-color: #74c4b4;  /* Background color to enhance contrast */
+  padding: 10px;  /* Padding inside the container */
+}
+
+#image-scroll-container {
+  display: flex;
+  animation: scrollImages 15s linear infinite;
+  width: 15%;
+}
+
+#image-scroll-container img {
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  border-radius: 10px;  /* Adds slight rounding to each image for cohesion */
+  margin-right: 10px;  /* Space between images */
+}
+
+#image-scroll-container img {
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+}
+
+/* Live Chat Icon */
+#live-chat-icon {
+    position: fixed;  /* Fixes the icon at the specified position */
+    bottom: 20px;  /* 20px from the bottom */
+    right: 20px;  /* 20px from the left */
+    background-color: #ecf6f6;  /* Green background for the icon */
+    border-radius: 50%;  /* Makes it circular */
+    padding: 10px;  /* Adds some space around the icon */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);  /* Adds shadow for a floating effect */
+    cursor: pointer;  /* Changes cursor to a pointer when hovered */
+    z-index: 999;  /* Ensures it stays above other elements */
+    transition: transform 0.3s ease;  /* Smooth transition for hover effect */
+}
+
+#live-chat-icon:hover {
+    transform: scale(1.1);  /* Scales the icon on hover for effect */
+}
+
+#live-chat-icon img {
+    width: 50px;  /* Adjust size of the icon */
+    height: 50px;  /* Adjust size of the icon */
+    border-radius: 50%;  /* Makes the image circular */
+}
+
+
+/* Keyframe animation for the image scroll */
+@keyframes scrollImages {
+  0% {
+    transform: translateX(0);
+  }
+  33.33% {
+    transform: translateX(-100%);
+  }
+  66.66% {
+    transform: translateX(-200%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Media Queries */
+@media (min-width: 600px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr); /* Two columns layout */
+    gap: 20px;
+  }
+}
+
+/* General Book Appointment Section */
+.book-appointment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #74c4b400;
+  padding: 20px 20px;
+  margin-top: 40px;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-container {
+  background-color: #f3f3f3;
+  border-radius: 18px;
+  padding: 40px;
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+}
+
+.book-appointment h2 {
+  font-size: 2.5em;
+  color: #74c4b4;
+  margin-bottom: 5px;
+}
+
+.book-appointment p {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.form-group label {
+  font-size: 1.1em;
+  color: #74c4b4;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  padding: 12px;
+  font-size: 1.1em;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  width: 100%;
+  max-width: 500px;
+  background-color: #f9f9f9;
+  transition: border 0.3s ease, background-color 0.3s ease;
+}
+
+.form-group input:focus {
+  border: 1px solid #74c4b4;
+  background-color: #e9f4e1;
+}
+
+button[type="submit"] {
+  background-color: #74c4b4;
+  color: white;
+  padding: 14px 24px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  width: 100%;
+  max-width: 500px;
+  margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+  background-color: #74c4b4;
+  transform: translateY(-3px);
+}
+
+button[type="submit"]:active {
+  transform: translateY(1px);
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 600px) {
+  .appointment-container {
+    padding: 30px 20px;
+  }
+
+  .form-group input {
+    font-size: 1em;
+  }
+
+  button[type="submit"] {
+    font-size: 1em;
+  }
+}
+
+/* Style for the button class */
+.button {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), inset 0 0 5px rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+}
+
+/* Music Toggle Button */
+.music-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #74c4b4;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.music-button:hover {
+    transform: scale(1.1);
+}
+

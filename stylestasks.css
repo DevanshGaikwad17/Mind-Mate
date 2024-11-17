@@ -1,0 +1,309 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Body */
+body {
+    background-image: url("bg-transformed.jpeg");
+    color: #333;
+    padding: 20px;
+    background-image: url('bg-transformed.jpeg'); /* Path to the background image */
+    background-size: 100%; /* Ensures the image covers the entire body */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    margin: 0; /* Removes default margin */
+    height: 100vh; /* Makes sure the background covers the full viewport height */
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2rem;
+    color: #74c4b4;
+    font-weight: bold;
+}
+
+/* Navigation Bar at the Bottom */
+nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: #e8f5e9;
+  padding: 12px 0;
+  flex-wrap: wrap;
+  gap: 15px;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+  color: #74c4b4;
+  background-color: #ffffff;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #9bc8bf;
+  color: #ffffff;
+}
+
+
+/* Calendar Container */
+.calendar-container {
+    max-width: 650px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: block;  /* Ensures the calendar is visible */
+}
+
+/* Calendar Header */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-header button {
+    background-color: #9bc8bf;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.calendar-header button:hover {
+    background-color: #74c4b4;
+}
+
+#monthAndYear {
+    font-size: 1.5rem;
+    color: #74c4b4;
+    font-weight: bold;
+}
+
+/* Calendar Layout */
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.day {
+    background-color: #ffffff;
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.day:hover {
+    background-color: #c8e6c9;
+    border-radius: 8px;
+    transform: scale(1.05);
+}
+
+.day.selected {
+    background-color: #a3d5cb;
+    color: white;
+    border-radius: 50%;
+    transform: scale(1.1); /* Slight scale for the selected day */
+}
+
+/* Weekdays */
+.weekdays {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.weekday {
+    width: 13%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #74c4b4;
+}
+
+/* Task Section */
+.task-section {
+    margin-top: 30px;
+}
+
+.task-section h2 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    color: #74c4b4;
+    text-align: left;
+    font-weight: bold;
+}
+
+#selectedDate {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #74c4b4;
+    font-weight: bold;
+}
+
+/* Task List Styles */
+.task-item {
+    background-color: #f1f8e9;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.task-item button {
+    background-color: #f25757;
+    color: white;
+    border-radius: 50%;
+    font-size: 0.85rem;
+    padding: 6px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.task-item button:hover {
+    background-color: #d32f2f;
+}
+
+/* Task Input and Button Styles */
+#taskInput {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    font-size: 1rem;
+    outline: none;
+}
+
+#taskInput:focus {
+    border-color: #74c4b4;
+}
+
+/* Task Input and Button Container */
+.task-input-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+/* Add Task Button */
+button.add-task-btn {
+    background-color: #74c4b4;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button.add-task-btn:hover {
+    background-color: #74c4b4;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .calendar-container {
+        padding: 15px;
+    }
+
+    .calendar-header button {
+        font-size: 0.9rem;
+        padding: 8px 14px;
+    }
+
+    .calendar {
+        grid-template-columns: repeat(7, 1fr);
+    }
+
+    .day {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+
+    .task-item {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .task-item button {
+        padding: 5px 8px;
+        font-size: 0.8rem;
+    }
+
+    button.add-task-btn {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobile and Tablet Design */
+@media (max-width: 480px) {
+    .calendar-container {
+        padding: 10px;
+    }
+
+    .calendar-header button {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+
+    .calendar {
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
+    }
+
+    .day {
+        padding: 10px;
+        font-size: 0.85rem;
+    }
+
+    .task-item {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+
+    .task-item button {
+        padding: 4px 6px;
+        font-size: 0.7rem;
+    }
+
+    button.add-task-btn {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
+}

@@ -1,0 +1,298 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Button Layout</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <style>
+            /* The switch - the box around the slider */
+            .switch {
+                font-size: 17px;
+                position: relative;
+                display: inline-block;
+                width: 3.5em;
+                height: 2em;
+            }
+
+            /* Hide default HTML checkbox */
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+            /* The slider */
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgb(182, 182, 182);
+                transition: .4s;
+                border-radius: 10px;
+            }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 1.4em;
+                width: 1.4em;
+                border-radius: 8px;
+                left: 0.3em;
+                bottom: 0.3em;
+                transform: rotate(270deg);
+                background-color: rgb(255, 255, 255);
+                transition: .4s;
+            }
+
+            .switch input:checked + .slider {
+                background-color: #21cc4c;
+            }
+
+            .switch input:focus + .slider {
+                box-shadow: 0 0 1px #2196F3;
+            }
+
+            .switch input:checked + .slider:before {
+                transform: translateX(1.5em);
+            }
+        </style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Layout</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <style>
+        /* The switch - the box around the slider */
+        .switch {
+            font-size: 17px;
+            position: fixed; /* Fixes the switch in the viewport */
+            top: 10px; /* Adjust to give space from the top */
+            right: 10px; /* Adjust to give space from the right */
+            display: inline-block;
+            width: 3.5em;
+            height: 2em;
+            z-index: 999; /* Ensures it's on top of other content */
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgb(182, 182, 182);
+            transition: .4s;
+            border-radius: 10px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 1.4em;
+            width: 1.4em;
+            border-radius: 8px;
+            left: 0.3em;
+            bottom: 0.3em;
+            transform: rotate(270deg);
+            background-color: rgb(255, 255, 255);
+            transition: .4s;
+        }
+
+        .switch input:checked + .slider {
+            background-color:#74c4b4;
+        }
+
+        .switch input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        .switch input:checked + .slider:before {
+            transform: translateX(1.5em);
+        }
+    </style>
+        <script>
+            let isMusicPlaying = false;
+
+            function toggleMusic() {
+                const bgMusic = document.getElementById('bg-music');
+
+                if (isMusicPlaying) {
+                    bgMusic.pause();
+                } else {
+                    bgMusic.play();
+                }
+
+                isMusicPlaying = !isMusicPlaying;
+            }
+        </script>
+
+
+        <script>
+            function callPls() {
+                fetch('/run-pls', {  // Make a POST request to the /run-pls route
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.result);  // Display the response in the console
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        </script>
+    </head>
+    <body>
+        <button 
+            onclick="location.href='/start'" 
+            style="
+                position: fixed; 
+                top: 10px; 
+                left: 10px; 
+                background-color: rgb(48, 154, 186); 
+                color: white; 
+                padding: 10px 20px; 
+                border: none; 
+                border-radius: 5px; 
+                font-size: 16px; 
+                cursor: pointer; 
+                z-index: 1000; 
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            ">
+            Home
+        </button>
+
+        <header>
+            <img src="static/title.png" alt="title">
+        </header>
+        
+        <!-- Audio Element -->
+        <audio id="bg-music" src="static/bgmusic.mp3" loop></audio>
+
+        <!-- Music Toggle Switch -->
+        <label class="switch">
+            <input type="checkbox" onclick="toggleMusic()">
+            <span class="slider"></span>
+        </label>
+    
+<!--         
+        <div id="image-scroll">
+            <div id="image-scroll-container">
+                <img src="static/quotes.PNG" alt="Image 1">
+                <img src="static/quotes1.PNG" alt="Image 2">
+                <img src="static/quotes2.PNG" alt="Image 3">
+                <img src="static/44.png" alt="Image 4">
+                <img src="static/55.png" alt="Image 5">
+                <img src="static/66.png" alt="Image 6">
+                <img src="static/77.png" alt="Image 7">
+                <img src="static/88.png" alt="Image 8">
+                <img src="static/99.png" alt="Image 9">
+                <img src="static/00.png" alt="Image 10">
+                <img src="static/11.png" alt="Image 11">
+
+            </div>
+        </div>
+-->
+        <div class="container">
+            <div class="button" id="ai-assistant" onclick="window.location.href='/aiassistant'">
+                <img src="static/logoai.png" alt="AI Assistant Icon">
+                AI Assistant
+            </div>
+            <div class="button" id="Goals and Tasks" onclick="window.location.href='/tasks'">
+                <img src="static/logotask.png
+                " alt="Relax and Meditate Icon">
+                Goals and Tasks
+            </div>
+            <div class="button" id="games" onclick="window.location.href='/mydiary'">
+                <img src="static/games.png" alt="Games Icon">
+                My Diary
+            </div>
+            <div class="button" id="relax-meditate" onclick="window.location.href='/meditation'">
+                <img src="static/meditate.png" alt="Relax and Meditate Icon">
+                Relax and Meditate
+            </div>
+            <div class="button" id="my-watch" onclick="window.location.href='/watch'">
+                <img src="static/watchlogo.png" alt="My Watch Icon">
+                My Watch
+            </div>
+            <div class="button" id="community" onclick="window.location.href='https://discord.com/channels/1305021968617046026/1305021968617046029'">
+                <img src="static/community.png" alt="Community Support Icon">
+                Community
+            </div>
+            <div class="button" id="courses" onclick="window.location.href='/courses'">
+                <img src="static/courses.png" alt="Crisis Support Icon">
+                Courses
+            </div>
+        </div>
+
+        <div id="live-chat-icon" onclick="sendWhatsAppMessage()">
+            <img src="static/livechatlogo.png" alt="Live Chat" />
+        </div>
+
+        <script>
+            function sendWhatsAppMessage() {
+                fetch('/send-whatsapp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        
+                    } else {
+                        
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        </script>
+
+        <div class="book-appointment">
+            <div class="appointment-container">
+
+        <div class="book-appointment">
+            <div class="appointment-container">
+                <h2>Book an Appointment</h2>
+                <p>Fill out the form below to schedule your session with us. We’re here to help!</p>
+                <!-- Make sure the form sends the data via POST method -->
+                <form id="booking-form" action="/submit-booking" method="POST">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Gmail ID</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your Gmail ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Purpose</label>
+                        <input type="text" id="purpose" name="purpose" required placeholder="Enter your Purpose of Appointment here">
+                    </div>
+                    <div cpnglass="form-group">
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                    </div>
+                    <button type="submit">Book Now</button>
+                </form>
+            </div>
+        </div>
+
+    </body>
+    </html>
