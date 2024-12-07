@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellness Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/start" class="nav-logo">
+                <img src="static/title.png" alt="Wellness Logo" class="logo-img">
+            </a>
+            <div class="nav-controls">
+                <a href="/start" class="nav-home-btn">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Your Journey to Wellness Begins Here</h1>
+            <p>Discover personalized support, expert guidance, and tools for your mental well-being</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <!-- AI Assistant - Full Width -->
+        <div class="feature-grid">
+            <div class="feature-card full-width" onclick="window.location.href='/aiassistant'">
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="card-text">
+                        <h3>AI Assistant</h3>
+                        <p>Get personalized support and guidance from our advanced AI companion</p>
+                    </div>
+                </div>
+                <div class="card-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <!-- Two Column Features -->
+            <div class="feature-card half-width" onclick="window.location.href='/tasks'">
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="card-text">
+                        <h3>Goals & Tasks</h3>
+                        <p>Track your progress and set meaningful objectives</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-card half-width" onclick="window.location.href='/mydiary'">
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="card-text">
+                        <h3>My Diary</h3>
+                        <p>Document your journey and reflect on your growth</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-card half-width" onclick="window.location.href='/meditation'">
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fas fa-peace"></i>
+                    </div>
+                    <div class="card-text">
+                        <h3>Relax & Meditate</h3>
+                        <p>Find peace with guided meditation sessions</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-card half-width" onclick="window.location.href='/watch'">
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="card-text">
+                        <h3>My Watch</h3>
+                        <p>Monitor your daily wellness activities</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-card half-width" onclick="window.location.href='https://discord.com/channels/1305021968617046026/1305021968617046029'">
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="card-text">
+                        <h3>Community</h3>
+                        <p>Connect with others on similar journeys</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-card half-width" onclick="window.location.href='/courses'">
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="card-text">
+                        <h3>Courses</h3>
+                        <p>Expand your knowledge with expert-led courses</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Appointment Section -->
+        <section class="appointment-section">
+            <div class="appointment-container">
+                <h2>Schedule Your Session</h2>
+                <p>Take the first step towards better well-being</p>
+                <form id="booking-form" action="/submit-booking" method="POST">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Gmail ID</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your Gmail ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="purpose">Purpose</label>
+                        <input type="text" id="purpose" name="purpose" required placeholder="Purpose of appointment">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                    </div>
+                    <button type="submit" class="submit-btn">Book Your Session</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Live Chat Button -->
+    <button class="live-chat-btn" onclick="sendWhatsAppMessage()">
+        <i class="fas fa-comments"></i>
+        <span>Chat with Us</span>
+    </button>
+
+    <!-- Audio Element -->
+    <audio id="bg-music" src="static/bgmusic.mp3" loop></audio>
+
+    <!-- Scripts -->
+    <script>
+        let isMusicPlaying = false;
+
+        function toggleMusic() {
+            const bgMusic = document.getElementById('bg-music');
+            if (isMusicPlaying) {
+                bgMusic.pause();
+            } else {
+                bgMusic.play();
+            }
+            isMusicPlaying = !isMusicPlaying;
+        }
+
+        function sendWhatsAppMessage() {
+            fetch('/send-whatsapp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    console.log("Message sent successfully");
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

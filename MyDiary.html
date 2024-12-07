@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mindful Options</title>
+    <link rel="stylesheet" href="static/MyDiary.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/start" class="nav-logo">
+                <img src="static/title.png" alt="Wellness Logo" class="logo-img">
+            </a>
+            <div class="nav-controls">
+                <a href="/start" class="nav-home-btn">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="button-container">
+        <h1>Welcome to Your Mindful Journal</h1>
+        <p>What would you like to do today:</p>
+        <div class="button-grid">
+            <div class="button" id="new-entry" onclick="window.location.href='/survey'">
+                <img src="static/entry.png" alt="Create New Entry Icon">
+                Create New Journal
+            </div>
+            <div class="button" id="revisit-memories" onclick="window.location.href='/memories'">
+                <img src="static/memories.png" alt="Revisit Memories Icon">
+                Revisit Old Memories
+            </div>
+        </div>
+    </div>
+</body>
+</html>

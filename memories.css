@@ -1,0 +1,216 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f4f7fb;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #f0f4f8, #e2e8f0);
+  height: 200vh;
+}
+:root {
+    --primary: #2D3047;
+    --secondary: #419D78;
+    --accent: #E0A458;
+    --background: #F7F9FC;
+    --text: #2B2D42;
+    --light-text: #6B7280;
+    --white: #FFFFFF;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, var(--primary) 0%, #419D78 100%);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+/* Header Styling */
+.navbar {
+    background: var(--white);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;  /* Adds spacing between logo and home button */
+}
+
+.logo-img {
+    height: 90px;  /* Slightly larger logo for better visibility */
+    width: auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-home-btn {
+    background: var(--secondary);
+    color: var(--white);
+    padding: 0.75rem 1.25rem;  /* Slightly larger button for better touch targets */
+    border-radius: 12px;  /* Rounded corners for a softer look */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;  /* Bold text for better emphasis */
+    transition: var(--transition);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Slight shadow for a floating effect */
+}
+
+.nav-home-btn:hover {
+    background: #368c69;
+    transform: translateY(-3px);  /* Slightly more pronounced hover effect */
+}
+
+.nav-home-btn i {
+    font-size: 1.25rem;  /* Larger icon for better visibility */
+}
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--background);
+    background-size: cover;
+}
+.container {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 900px;
+  padding: 40px 40px;
+  text-align: center;
+  transform: translateY(30px);
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.survey-card {
+  text-align: center;
+}
+
+.title {
+  font-size: 40px;
+  color: #3b5b4f;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  animation: fadeIn 1s ease-out;
+}
+
+#memoriesList {
+  margin-top: 30px;
+  text-align: left;
+  font-size: 18px;
+}
+
+.memory-entry {
+  background-color: #f9fafb;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.memory-entry:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.memory-entry h3 {
+  font-size: 22px;
+  color: #74c4b4;
+  font-weight: bold;
+}
+
+.memory-answer {
+  margin-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.memory-answer p {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.memory-answer p:first-child {
+  font-weight: 600;
+  color: #4a877b;
+}
+
+/* Animation for smooth fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 30px;
+  }
+  .memory-entry {
+    padding: 20px;
+  }
+  .memory-entry h3 {
+    font-size: 20px;
+  }
+  .memory-answer p {
+    font-size: 16px;
+  }
+}

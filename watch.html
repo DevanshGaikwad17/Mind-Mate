@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-Time Stress Monitor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='watch.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/start" class="nav-logo">
+                <img src="static/title.png" alt="Wellness Logo" class="logo-img">
+            </a>
+            <div class="nav-controls">
+                <a href="/start" class="nav-home-btn">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+            </div>
+        </div>
+    </nav>
+  <div class="container">
+    <header>
+      <h1>Real-Time Stress Monitor</h1>
+      <p class="subheading">Monitor your heart rate and stress level in real-time.</p>
+    </header>
+
+    <section class="stats">
+      <div class="stat-box">
+        <h2>BPM</h2>
+        <p id="bpm" class="data-value">Loading...</p>
+      </div>
+      <div class="stat-box">
+        <h2>Stress Level</h2>
+        <p id="stress-level" class="data-value">Loading...</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>Data is updated in real-time based on your pulse and heart rate variability (HRV).</p>
+    </footer>
+  </div>
+
+  <script>
+    function fetchData() {
+      fetch('/watch/data')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('bpm').textContent = data.bpm;
+          document.getElementById('stress-level').textContent = data.stress_level;
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    }
+
+    setInterval(fetchData, 1000); // Fetch data every second
+  </script>
+
+  <button 
+      onclick="location.href='/stats'" 
+      style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #7bbcd4; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+      Statistics
+  </button>
+
+</body>
+</html>
+

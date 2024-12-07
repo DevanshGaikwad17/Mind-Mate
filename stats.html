@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statistics Dashboard</title>
+  <link rel="stylesheet" href="static/stats.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js -->
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/start" class="nav-logo">
+                <img src="static/title.png" alt="Wellness Logo" class="logo-img">
+            </a>
+            <div class="nav-controls">
+                <a href="/start" class="nav-home-btn">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+            </div>
+        </div>
+    </nav>
+  <header>
+    <h1>Real-Time Health Statistics</h1>
+  </header>
+
+  <main class="container">
+    <section class="real-time-stats">
+      <h2>Live Data</h2>
+      <div>
+        <p><strong>BPM:</strong> <span id="bpm">Loading...</span></p>
+        <p><strong>Stress Level:</strong> <span id="stress-level">Loading...</span></p>
+      </div>
+    </section>
+
+    <section class="chart-section">
+      <h2>Statistics Over Time</h2>
+      <canvas id="bpm-chart" width="400" height="200"></canvas>
+      <canvas id="stress-chart" width="400" height="200"></canvas>
+    </section>
+  </main>
+
+  <footer>
+    <p>Data is updated in real-time based on your pulse and heart rate variability (HRV).</p>
+  </footer>
+
+  <script>
+    let bpmData = [];
+    let stressData = [];
+    let timeLabels = [];
+
+    const bpmChartCtx = document.getElementById('bpm-chart').getContext('2d');
+    const stressChartCtx = document.getElementById('stress-chart').getContext('2d');
+
+    const bpmChart = new Chart(bpmChartCtx, {
+      type: 'line',
+      data: {
+        labels: timeLabels,
+        datasets: [{
+          label: 'BPM',
+          data: bpmData,
+          borderColor: 'rgb(75, 192, 192)',
+          fill: false,
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: { type: 'linear', position: 'bottom' }
+        }
+      }
+    });
+
+    const stressChart = new Chart(stressChartCtx, {
+      type: 'line',
+      data: {
+        labels: timeLabels,
+        datasets: [{
+          label: 'Stress Level',
+          data: stressData,
+          borderColor: 'rgb(255, 99, 132)',
+          fill: false,
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: { type: 'linear', position: 'bottom' }
+        }
+      }
+    });
+
+    function fetchData() {
+      fetch('/watch/data')
+        .then(response => response.json())
+        .then(data => {
+          const currentTime = timeLabels.length ? timeLabels[timeLabels.length - 1] + 1 : 1;
+
+          // Add data to the charts
+          bpmData.push(data.bpm);
+          stressData.push(data.stress_level);
+          timeLabels.push(currentTime);
+
+          // Update chart data
+          bpmChart.update();
+          stressChart.update();
+
+          // Update the real-time display
+          document.getElementById('bpm').textContent = data.bpm;
+          document.getElementById('stress-level').textContent = data.stress_level;
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    }
+
+    setInterval(fetchData, 60000); // Fetch data every minute (60,000 ms)
+  </script>
+</body>
+
+</html>

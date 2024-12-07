@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks & Goals Calendar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylestasks.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/start" class="nav-logo">
+                <img src="static/title.png" alt="Wellness Logo" class="logo-img">
+            </a>
+            <div class="nav-controls">
+                <a href="/start" class="nav-home-btn">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+            </div>
+        </div>
+    </nav>
+<div class="calendar-container">
+    <h1>Tasks & Goals Calendar</h1>
+    <div class="calendar-header">
+        <button onclick="prevMonth()">‹</button>
+        <h2 id="monthAndYear"></h2>
+        <button onclick="nextMonth()">›</button>
+    </div>
+
+    <div class="calendar" id="calendar">
+        <!-- Days will be generated here by JavaScript -->
+    </div>
+
+    <div class="task-section">
+        <h2 id="selectedDate">Selected Date: None</h2>
+        <input type="text" id="taskInput" placeholder="Enter a task">
+        <button id="addTaskButton" onclick="addTask()">Add Task</button>
+        <div id="taskList"></div>
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='tasksjs.js') }}"></script>
+
+</body>
+</html>

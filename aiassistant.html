@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant</title>
+    <link rel="stylesheet" href="static/aiassistant.css">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to handle sending text input to Flask
+            document.getElementById('send-button').addEventListener('click', function() {
+                // Capture user input
+                let talkquery = document.getElementById('user-input').value;
+
+                // Check if input is not empty
+                if (talkquery.trim() !== '') {
+                    // Create and display the user message in the chat window
+                    const userMessage = document.createElement('div');
+                    userMessage.classList.add('chat-message', 'user');
+                    userMessage.innerHTML = `
+                        <div class="message">
+                            <p>${talkquery}</p>
+                            <span class="timestamp">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                        </div>
+                    `;
+                    document.getElementById('chat-window').appendChild(userMessage);
+                    document.getElementById('user-input').value = '';  // Clear input field
+                    document.getElementById('chat-window').scrollTop = document.getElementById('chat-window').scrollHeight;  // Scroll to the bottom
+
+                    // Send the query to Flask backend
+                    fetch('/send-query', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ query: talkquery })  // Send the query to the backend
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // The response from the backend is the output of talk(talkquery)
+                        const botMessage = document.createElement('div');
+                        botMessage.classList.add('chat-message', 'bot');
+                        botMessage.innerHTML = `
+                            <div class="message">
+                                <p>${data.output}</p> <!-- Display the output from the talk function -->
+                                <span class="timestamp">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                            </div>
+                        `;
+                        document.getElementById('chat-window').appendChild(botMessage);
+                        document.getElementById('chat-window').scrollTop = document.getElementById('chat-window').scrollHeight;
+                    })
+                    .catch(error => console.error('Error:', error));
+                }
+            });
+
+            function callPls() {
+                fetch('/run-pls', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // The bot's output is displayed here
+                    const botMessage = document.createElement('div');
+                    botMessage.classList.add('chat-message', 'bot');
+                    botMessage.innerHTML = `
+                        <div class="message">
+                            <p>${data.output}</p> <!-- Display the output from the Flask backend -->
+                            <span class="timestamp">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                        </div>
+                    `;
+                    document.getElementById('chat-window').appendChild(botMessage);
+                    document.getElementById('chat-window').scrollTop = document.getElementById('chat-window').scrollHeight;
+                })
+                .catch(error => console.error('Error:', error));
+            }
+
+
+            // Expose the function to the global scope so the mic button can call it
+            window.callPls = callPls;
+        });
+    </script>
+
+</head>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/start" class="nav-logo">
+                <img src="static/title.png" alt="Wellness Logo" class="logo-img">
+            </a>
+            <div class="nav-controls">
+                <a href="/start" class="nav-home-btn">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="ai-container">
+        <!-- Header -->
+        <header class="ai-header">
+            <h1>Welcome to Your AI Assistant</h1>
+            <p>I'm here to help with all your questions. Just type below to get started!</p>
+        </header>
+
+        <!-- Chat Interface -->
+        <div class="chat-window" id="chat-window">
+            <div class="chat-message bot">
+                <div class="avatar">🤖</div>
+                <div class="message">
+                    <p>Hello! How can I assist you today?</p>
+                    <span class="timestamp">10:00 AM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Box -->
+        <div class="input-box">
+            <input type="text" placeholder="Type your message..." id="user-input" />
+            <button id="send-button">Send</button>
+            <button id="voice-button" onclick="callPls()" title="Click to speak">🎤</button>
+        </div>
+    </div>
+</body>
+</html>

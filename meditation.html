@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meditation & Relaxation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles2.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/start" class="nav-logo">
+                <img src="static/title.png" alt="Wellness Logo" class="logo-img">
+            </a>
+            <div class="nav-controls">
+                <a href="/start" class="nav-home-btn">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="meditation-container">
+        <h2>Choose Your Relaxation Style</h2>
+        <p>Select a meditation or relaxation technique to help you unwind.</p>
+        <div class="meditation-options">
+            <button onclick="window.location.href='/calmmeditation'">Guided Meditation</button>
+            <button onclick="window.location.href='/breathing'">Breathing Exercises</button>
+            <button onclick="window.location.href='/soulheal'">Mind, Body and Soul Healing</button>
+            <button onclick="window.location.href='/manifest'">Mindful Manifestation</button>
+        </div>
+        <p id="selected-option" class="selected-option"></p>
+    </div>
+
+    <script>
+        function selectOption(option) {
+            const selectedOption = document.getElementById("selected-option");
+            selectedOption.innerText = "You selected: " + option;
+            selectedOption.classList.add("show");
+        }
+    </script>
+</body>
+</html>

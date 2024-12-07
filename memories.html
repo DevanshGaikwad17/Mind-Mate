@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Revisit Memories</title>
+    <link rel="stylesheet" href="static/memories.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/start" class="nav-logo">
+                <img src="static/title.png" alt="Wellness Logo" class="logo-img">
+            </a>
+            <div class="nav-controls">
+                <a href="/start" class="nav-home-btn">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="survey-card">
+            <h1 class="title">Revisit My Memories</h1>
+            <div id="memoriesList">
+                <!-- Survey entries will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const memoriesList = document.getElementById("memoriesList");
+
+            // Retrieve the saved data from localStorage
+            const savedData = JSON.parse(localStorage.getItem("surveyResponses")) || [];
+
+            if (savedData.length === 0) {
+                memoriesList.innerHTML = "<p>No memories found.</p>";
+            } else {
+                savedData.forEach((entry) => {
+                    const memoryDiv = document.createElement("div");
+                    memoryDiv.classList.add("memory-entry");
+
+                    const date = document.createElement("h3");
+                    date.textContent = `Date: ${entry.date}`;
+                    memoryDiv.appendChild(date);
+
+                    const responses = entry.responses;
+
+                    // Define the questions (you can customize these)
+                    const questions = {
+                        "1": "How are you feeling today?",
+                        "2": "Why do you feel this way?",
+                        "3": "What did you do today?",
+                        "4": "Who did you interact with today?",
+                        "5": "Did you feel energized today?"
+                    };
+
+                    // Display each question and answer
+                    for (let [questionNumber, answer] of Object.entries(responses)) {
+                        // Log the question number to check the format
+                        console.log(`Question Number: ${questionNumber}, Answer: ${answer}`);
+
+                        const questionDiv = document.createElement("div");
+                        questionDiv.classList.add("memory-answer");
+
+                        // Get the question text based on the question number
+                        const questionText = questions[questionNumber] || "Unknown Question";
+
+                        const questionElement = document.createElement("p");
+                        questionElement.textContent = `Q${questionNumber}: ${questionText}`;
+                        questionDiv.appendChild(questionElement);
+
+                        const answerText = document.createElement("p");
+                        answerText.textContent = `Answer: ${answer}`;
+                        questionDiv.appendChild(answerText);
+
+                        memoryDiv.appendChild(questionDiv);
+                    }
+
+                    memoriesList.appendChild(memoryDiv);
+                });
+            }
+        });
+
+    </script>
+
+
+</body>
+</html>

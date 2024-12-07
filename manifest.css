@@ -1,0 +1,216 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body & Page Styling */
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    background: linear-gradient(135deg, var(--primary) 0%, #419D78 100%);
+}
+:root {
+    --primary: #2D3047;
+    --secondary: #419D78;
+    --accent: #E0A458;
+    --background: #F7F9FC;
+    --text: #2B2D42;
+    --light-text: #6B7280;
+    --white: #FFFFFF;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, var(--primary) 0%, #419D78 100%);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+/* Header Styling */
+.navbar {
+    background: var(--white);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;  /* Adds spacing between logo and home button */
+}
+
+.logo-img {
+    height: 90px;  /* Slightly larger logo for better visibility */
+    width: auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-home-btn {
+    background: var(--secondary);
+    color: var(--white);
+    padding: 0.75rem 1.25rem;  /* Slightly larger button for better touch targets */
+    border-radius: 12px;  /* Rounded corners for a softer look */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;  /* Bold text for better emphasis */
+    transition: var(--transition);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Slight shadow for a floating effect */
+}
+
+.nav-home-btn:hover {
+    background: #368c69;
+    transform: translateY(-3px);  /* Slightly more pronounced hover effect */
+}
+
+.nav-home-btn i {
+    font-size: 1.25rem;  /* Larger icon for better visibility */
+}
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--background);
+    background-size: cover;
+}
+/* Main Container Styling for Centered Column Layout */
+#breathing-exercise {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay for contrast */
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Title Styling */
+h2 {
+  font-size: 2.5em;
+  font-weight: 700;
+  color: #74c4b4;
+  text-shadow: 2px 2px 10px rgba(10, 240, 18, 0.7);
+  margin-bottom: 10px;
+}
+
+/* Instructions Styling */
+.instructions {
+  font-size: 1.2em;
+  font-weight: 300;
+  color: #e0e0e0;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+/* Video Container Styling */
+.video-container {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin-top: 20px;
+  overflow: hidden;
+  border-radius: 20px; /* Rounded corners */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+}
+
+#center-video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Timer Styling */
+.timer {
+  font-size: 4em;
+  font-weight: 900;
+  color: #74c4b4;
+  letter-spacing: 2px;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+  margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  h2 {
+    font-size: 2.2em;
+  }
+
+  .instructions {
+    font-size: 1em;
+  }
+
+  .timer {
+    font-size: 3.2em;
+  }
+}
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 2em;
+  }
+
+  .instructions {
+    font-size: 0.9em;
+  }
+
+  .timer {
+    font-size: 2.8em;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1.8em;
+  }
+
+  .instructions {
+    font-size: 0.8em;
+  }
+
+  .timer {
+    font-size: 2.5em;
+  }
+}

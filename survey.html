@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mindful Check-In</title>
+    <link rel="stylesheet" href="static/survey.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/start" class="nav-logo">
+                <img src="static/title.png" alt="Wellness Logo" class="logo-img">
+            </a>
+            <div class="nav-controls">
+                <a href="/start" class="nav-home-btn">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="survey-card">
+            <h1 class="title">My Day</h1>
+            <p class="intro">Take a moment to reflect on your day and feelings.</p>
+            
+            <form id="surveyForm">
+                <!-- Question 1 -->
+                <div class="question" data-step="1">
+                    <label for="mood">How are you feeling today?</label>
+                    <select id="mood" name="mood">
+                        <option value="Very Happy">Very Happy</option>
+                        <option value="Happy">Happy</option>
+                        <option value="Neutral">Neutral</option>
+                        <option value="Unhappy">Unhappy</option>
+                        <option value="Very Unhappy">Very Unhappy</option>
+                    </select>
+                    <button type="button" class="next-btn">Next</button>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="question" data-step="2" style="display: none;">
+                    <label for="reason">What do you think is the reason behind your mood?</label>
+                    <textarea id="reason" name="reason" placeholder="Reflect on your feelings..."></textarea>
+                    <button type="button" class="next-btn">Next</button>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="question" data-step="3" style="display: none;">
+                    <label for="gratefulMoment">Did you have a proud or grateful moment today?</label>
+                    <textarea id="gratefulMoment" name="gratefulMoment" placeholder="What made you proud or grateful today?"></textarea>
+                    <button type="button" class="next-btn">Next</button>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="question" data-step="4" style="display: none;">
+                    <label for="smileMoment">What was one thing that made you smile today?</label>
+                    <textarea id="smileMoment" name="smileMoment" placeholder="Think of something small that brightened your day."></textarea>
+                    <button type="button" class="next-btn">Next</button>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="question" data-step="5" style="display: none;">
+                    <label for="energy">How much energy do you have right now?</label>
+                    <select id="energy" name="energy">
+                        <option value="Very Energized">Very Energized</option>
+                        <option value="Energized">Energized</option>
+                        <option value="Neutral">Neutral</option>
+                        <option value="Low Energy">Low Energy</option>
+                        <option value="Very Low Energy">Very Low Energy</option>
+                    </select>
+                    <button type="button" class="next-btn">Next</button>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="question" data-step="6" style="display: none;">
+                    <label for="stress">How stressed or relaxed do you feel at this moment?</label>
+                    <select id="stress" name="stress">
+                        <option value="Very Relaxed">Very Relaxed</option>
+                        <option value="Relaxed">Relaxed</option>
+                        <option value="Neutral">Neutral</option>
+                        <option value="Stressed">Stressed</option>
+                        <option value="Very Stressed">Very Stressed</option>
+                    </select>
+                    <button type="button" class="next-btn">Next</button>
+                </div>
+
+                <!-- Question 7 -->
+                <div class="question" data-step="7" style="display: none;">
+                    <label for="connection">How connected do you feel with yourself right now?</label>
+                    <select id="connection" name="connection">
+                        <option value="Very Connected">Very Connected</option>
+                        <option value="Somewhat Connected">Somewhat Connected</option>
+                        <option value="Neutral">Neutral</option>
+                        <option value="Disconnected">Disconnected</option>
+                    </select>
+                    <button type="button" class="next-btn">Next</button>
+                </div>
+
+                <!-- Question 8 -->
+                <div class="question" data-step="8" style="display: none;">
+                    <label for="reflection">What is something you've learned about yourself today?</label>
+                    <textarea id="reflection" name="reflection" placeholder="Take a moment to reflect on any new realizations."></textarea>
+                    <button type="button" class="next-btn">Next</button>
+                </div>
+
+                <!-- Question 9 -->
+                <div class="question" data-step="9" style="display: none;">
+                    <label for="positiveThought">What is a positive thought or affirmation you can share with yourself?</label>
+                    <textarea id="positiveThought" name="positiveThought" placeholder="Reaffirm something positive about yourself."></textarea>
+                    <button type="button" class="next-btn">Next</button>
+                </div>
+
+                <!-- Question 10 -->
+                <div class="question" data-step="10" style="display: none;">
+                    <label for="lookingForward">What are you looking forward to tomorrow?</label>
+                    <textarea id="lookingForward" name="lookingForward" placeholder="What's something you're excited about?"></textarea>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="static/survey.js"></script>
+</body>
+</html>
