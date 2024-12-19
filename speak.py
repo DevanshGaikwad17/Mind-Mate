@@ -1,8 +1,10 @@
 from elevenlabs import ElevenLabs
-import pygame  # For playing audio
+import pygame
 import threading
 import os
 import time
+import tempfile
+from contextlib import contextmanager
 
 # Initialize ElevenLabs with your API key
 client = ElevenLabs(api_key="your api")
@@ -10,53 +12,53 @@ client = ElevenLabs(api_key="your api")
 # Create a lock to synchronize access to the ElevenLabs API
 engine_lock = threading.Lock()
 
+@contextmanager
+def pygame_mixer():
+    """Context manager to properly initialize and quit pygame mixer"""
+    pygame.mixer.init(frequency=22050)
+    try:
+        yield
+    finally:
+        pygame.mixer.quit()
+
 def speak(audio):
-    # Lock to ensure thread safety when accessing the ElevenLabs API
-    with engine_lock:
-        # Generate speech (this returns a generator, so we need to handle it)
-        response = client.text_to_speech.convert(
-            voice_id="JBFqnCBsd6RMkjVDRZzb",  # Example voice ID (replace with actual)
-            output_format="mp3_44100_128",  # MP3 format
-            text=audio,
-            model_id="eleven_multilingual_v2"  # Model ID
-        )
-
-        # Generate a unique file name using a timestamp
-        filename = "output.mp3"
-
-        # Check if the file already exists and delete it to avoid permission issues
-        if os.path.exists(filename):
-            try:
-                os.remove(filename)
-            except Exception as e:
-                print(f"Error deleting existing file: {e}")
-
-        # Save the audio content to a unique file
+    with engine_lock:  # Thread safety for API access
         try:
-            with open(filename, "wb") as f:
+            # Generate speech
+            response = client.text_to_speech.convert(
+                voice_id="JBFqnCBsd6RMkjVDRZzb",
+                output_format="mp3_44100_128",
+                text=audio,
+                model_id="eleven_multilingual_v2"
+            )
+            
+            # Use a temporary file instead of a fixed filename
+            with tempfile.NamedTemporaryFile(suffix='.mp3', delete=False) as temp_file:
+                temp_filename = temp_file.name
+                # Save the audio content
                 for chunk in response:
-                    f.write(chunk)
-            print(f"Audio saved as {filename}")
+                    temp_file.write(chunk)
+            
+            # Play the audio using pygame
+            with pygame_mixer():
+                try:
+                    pygame.mixer.music.load(temp_filename)
+                    pygame.mixer.music.play()
+                    
+                    # Wait for playback to complete
+                    while pygame.mixer.music.get_busy():
+                        pygame.time.Clock().tick(10)
+                        
+                finally:
+                    pygame.mixer.music.unload()  # Ensure the file is released
+                    
         except Exception as e:
-            print(f"Error saving file: {e}")
-            return
-
-        # Initialize pygame mixer for audio playback
-        pygame.mixer.init(frequency=22050)  # Ensure pygame is initialized with a valid frequency
-
-        # Wait for the mixer to be ready
-        try:
-            pygame.mixer.music.load(filename)
-        except Exception as e:
-            print(f"Error loading audio file: {e}")
-            return
-
-        # Play the audio
-        pygame.mixer.music.play()
-
-        # Wait until the audio finishes playing
-        while pygame.mixer.music.get_busy():
-            pygame.time.Clock().tick(10)
-
-# Example of calling the speak function
-speak("Hello, how are you today?")
+            print(f"Error during speech synthesis or playback: {e}")
+            
+        finally:
+            # Clean up the temporary file
+            try:
+                if 'temp_filename' in locals():
+                    os.unlink(temp_filename)
+            except Exception as e:
+                print(f"Error cleaning up temporary file: {e}")
