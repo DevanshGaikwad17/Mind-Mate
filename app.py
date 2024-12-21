@@ -73,21 +73,20 @@ def stats():
 
 @app.route('/run-pls', methods=['POST'])
 def pls():
-    query = takeCommand().lower()
-    response_output = ""  # Initialize variable to store the output
-    if 'sleep' in query:
-        talkquery = query
-        response_output = talk(talkquery)  # Capture the response
-        speak(response_output)  # Speak the response
-        query = "none"
-    else:
-        talkquery = query
-        response_output = talk(talkquery)  # Capture the response
-        speak(response_output)  # Speak the response
-        query = "none"
-
-    # Return a proper JSON response including the spoken output
-    return jsonify({"status": "success", "message": "Command executed", "output": response_output})
+    query, emotion = takeCommand()  # Now receiving both query and emotion
+    query = query.lower() if query != "None" else "none"
+    response_output = ""
+    
+    if query != "none":
+        response_output = talk(query, emotion)  # Pass emotion to talk function
+        speak(response_output)
+    
+    return jsonify({
+        "status": "success", 
+        "message": "Command executed", 
+        "output": response_output,
+        "detected_emotion": emotion
+    })
 
 
 
