@@ -7,9 +7,18 @@ from speak import speak
 import time
 import google.generativeai as genai
 
+def get_emotion_prompt(emotion):
+    emotion_prompts = {
+        "very_happy": "I'm in an excellent mood! ",
+        "happy": "I'm feeling good! ",
+        "neutral": "",
+        "sad": "I'm feeling a bit down. ",
+        "very_sad": "I'm feeling really sad. ",
+        "excited": "I'm really excited! "
+    }
+    return emotion_prompts.get(emotion, "")
 
-
-genai.configure(api_key="Your API")
+genai.configure(api_key="")
 
 # Create the model
 generation_config = {
@@ -32,7 +41,7 @@ chat_session = model.start_chat(
     ]
 )
 
-def talk(talkquery):
+def talk(talkquery, emotion="neutral"):
     
     if 'send whatsapp message' in talkquery:
         swin = talkquery.replace("send whatsapp message", "")
@@ -89,8 +98,10 @@ def talk(talkquery):
 
     else:
         if talkquery != "none":
-            print(talkquery)
-            response = chat_session.send_message(talkquery)
-            return (response.text)
-
+            # Prepend emotion context to the query
+            emotion_context = get_emotion_prompt(emotion)
+            augmented_query = emotion_context + talkquery
+            
+            response = chat_session.send_message(augmented_query)
+            return response.text
 
